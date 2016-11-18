@@ -25,11 +25,6 @@
         <version>5.1.6</version>
     </dependency>
     <dependency>
-      <groupId>opencv</groupId>
-      <artifactId>opencv</artifactId>
-      <version>2.4.13</version>
-    </dependency>
-    <dependency>
         <groupId>org.apache.pdfbox</groupId>
         <artifactId>pdfbox-tools</artifactId>
         <version>2.0.3</version>
@@ -43,6 +38,16 @@
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
         <version>2.5</version>
+    </dependency>
+    <dependency>
+        <groupId>org.bytedeco.javacpp-presets</groupId>
+        <artifactId>tesseract</artifactId>
+        <version>3.04.01-1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>opencv</groupId>
+      <artifactId>opencv</artifactId>
+      <version>3.1.0</version>
     </dependency>
   </dependencies>
 </project>
