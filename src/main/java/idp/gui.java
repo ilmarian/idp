@@ -79,7 +79,6 @@ public class gui extends javax.swing.JFrame {
 
         jDialog1.setTitle("SSH connection");
         jDialog1.setAlwaysOnTop(true);
-        jDialog1.setMaximumSize(new java.awt.Dimension(300, 150));
         jDialog1.setMinimumSize(new java.awt.Dimension(300, 150));
         jDialog1.setResizable(false);
 
@@ -187,7 +186,8 @@ public class gui extends javax.swing.JFrame {
         );
 
         jDialog2.setTitle("Form analyzing complete");
-        jDialog2.setPreferredSize(new java.awt.Dimension(721, 400));
+        jDialog2.setMaximumSize(new java.awt.Dimension(703, 400));
+        jDialog2.setMinimumSize(new java.awt.Dimension(703, 400));
         jDialog2.setResizable(false);
 
         jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -313,14 +313,18 @@ public class gui extends javax.swing.JFrame {
         });
 
         jButton3.setText("Start processing");
-        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Options");
+        jButton4.setText("TESTI DIALOG");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Connect to remote host");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -440,11 +444,8 @@ public class gui extends javax.swing.JFrame {
         fc.setMultiSelectionEnabled(true);
         int result = fc.showOpenDialog(jPanel1);
         if (result == JFileChooser.APPROVE_OPTION){
-            jTextArea1.append(getTimeStamp()+ " <System>: Converting pdf files\n");
+            //jTextArea1.append(getTimeStamp()+ " <System>: Converting pdf files\n");
             ArrayList<File> files = new ArrayList(Arrays.asList(fc.getSelectedFiles()));
-            File hfile = new File("T.txt");
-            String path = hfile.getAbsolutePath();
-            path = path.substring(0, path.length() -5)+"src\\main\\resources\\images\\";
             for (File file : files) {
                 try {
                     pdf_converter.pdf_converter(file);
@@ -455,6 +456,7 @@ public class gui extends javax.swing.JFrame {
                 }       
             }
             files.clear();
+            String path = System.getProperty("user.dir")+"\\src\\main\\resources\\images\\";
             File f = new File(path);
             files = new ArrayList(Arrays.asList(f.listFiles()));
             
@@ -514,8 +516,13 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+        jDialog2.setVisible(false);
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        jDialog2.setVisible(true);
+        jDialog2.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     public static String getTimeStamp(){
         timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
@@ -573,7 +580,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JDialog jDialog1;
-    private javax.swing.JDialog jDialog2;
+    public javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
