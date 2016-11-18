@@ -10,7 +10,8 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import java.io.IOException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * TODO: sql queryjen teko gui:sta
  * @author Ilmari
@@ -43,7 +44,7 @@ public class mysql_con {
     public void mysql_conn() {
         Connection con = null;
         String url = "jdbc:mysql://localhost:" + lport + "/";
-        String db = s.getDb();
+        String db = "ilmarian";
         String dbUser = s.getDbUser();
         String dbPasswd = s.getDbPassword();
         try{
@@ -72,16 +73,7 @@ public class mysql_con {
                     
                 }else if (sql.toLowerCase().startsWith("drop")) {
                     gui.jTextArea1.append(gui.getTimeStamp()+" <System>: imac");
-                }else if(sql.toLowerCase().startsWith("create table")) {
-                    int update = st.executeUpdate(sql);
-                    if(update == 0){
-                        gui.jTextArea1.append(gui.getTimeStamp()+" <System>: Table created successfully\n");
-                    }
-                    else{
-                        gui.jTextArea1.append(gui.getTimeStamp()+" <System>: Table creation failed\n");
-                    }
-                }else if (sql.toLowerCase().startsWith("insert") || sql.toLowerCase().startsWith("update") 
-                        || sql.toLowerCase().startsWith("delete")){
+                } else {
                     int update = st.executeUpdate(sql);
                     if(update >= 1){
                         gui.jTextArea1.append(gui.getTimeStamp()+" <System>: Update completed successfully\n");

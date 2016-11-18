@@ -27,7 +27,7 @@ public class pdf_converter {
         path = path.substring(0, path.length() - 5) + "src\\main\\resources\\images\\";
         for (int page = 0; page < document.getNumberOfPages(); ++page) {
             BufferedImage bim = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
-            ImageIOUtil.writeImage(bim, path + file.getName() + "-" + (page + 1) + ".png", 300);
+            ImageIOUtil.writeImage(bim, path + file.getName() + "-" + (page + 1) + ".png", 300); 
         }
         document.close();
     }
