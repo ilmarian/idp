@@ -18,6 +18,7 @@ import org.apache.pdfbox.tools.imageio.ImageIOUtil;
  * @author Ilmari
  */
 public class pdf_converter {
+
     public static void pdf_converter(File file) throws IOException {
         PDDocument document = PDDocument.load(file);
         PDFRenderer pdfRenderer = new PDFRenderer(document);
