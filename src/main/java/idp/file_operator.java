@@ -26,8 +26,7 @@ import org.apache.commons.io.FileUtils;
 public class file_operator {
     static String path = System.getProperty("user.dir")+"\\src\\main\\temp\\csv\\";
     
-    public void write_csv(){   
-        String[] data = form_analyzer.getOutput();
+    public void write_csv(String[] data){   
         try {
             CSVWriter writer = new CSVWriter(
                     new OutputStreamWriter(new FileOutputStream(path+data[0]+".csv", true), "UTF-8"), ',',  CSVWriter.NO_QUOTE_CHARACTER);            

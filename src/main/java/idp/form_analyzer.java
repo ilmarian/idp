@@ -35,10 +35,6 @@ public class form_analyzer {
         api.End();
         outText.deallocate();
         pixDestroy(image);
-        fo.write_csv();
-    }
-    
-    public static String [] getOutput(){
-        return output.trim().split(" ");        
+        fo.write_csv(output.trim().split(" "));
     }
 }

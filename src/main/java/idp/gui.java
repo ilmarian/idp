@@ -191,7 +191,6 @@ public class gui extends javax.swing.JFrame {
         );
 
         jDialog2.setTitle("Display output");
-        jDialog2.setMaximumSize(new java.awt.Dimension(703, 400));
         jDialog2.setMinimumSize(new java.awt.Dimension(703, 400));
         jDialog2.setResizable(false);
 
@@ -268,8 +267,6 @@ public class gui extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.getAccessibleContext().setAccessibleDescription("");
-
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
         jDialog2Layout.setHorizontalGroup(
@@ -314,7 +311,7 @@ public class gui extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("TESTI DIALOG");
+        jButton4.setText("Output");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);

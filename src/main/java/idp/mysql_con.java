@@ -44,7 +44,7 @@ public class mysql_con {
     
     public void mysql_conn() {
         String url = "jdbc:mysql://localhost:" + lport + "/";
-        String db = "ilmarian";
+        String db = s.getDb();
         String dbUser = s.getDbUser();
         String dbPasswd = s.getDbPassword();
         try {

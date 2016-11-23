@@ -172,9 +172,6 @@
     <Container class="javax.swing.JDialog" name="jDialog2">
       <Properties>
         <Property name="title" type="java.lang.String" value="Display output"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[703, 400]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[703, 400]"/>
         </Property>
@@ -292,9 +289,6 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
-              </AccessibilityProperties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
@@ -509,7 +503,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="TESTI DIALOG"/>
+                <Property name="text" type="java.lang.String" value="Output"/>
               </Properties>
               <AccessibilityProperties>
                 <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Output"/>
