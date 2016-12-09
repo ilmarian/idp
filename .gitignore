@@ -1,2 +1,6 @@
 /target/
 /src/main/java/idp/secrets.java
+/build.xml
+/nb-configuration.xml
+/nbactions-run.xml
+/nbactions.xml
