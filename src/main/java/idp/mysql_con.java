@@ -21,7 +21,7 @@ public class mysql_con {
     static int lport;
     static String rhost;
     static int rport;
-    secrets s = new secrets();
+    //secrets s = new secrets();
 
     public void ssh_conn(String user, String pw) throws IOException{        
         String host = "cs.uef.fi";
@@ -40,13 +40,17 @@ public class mysql_con {
             gui.jTextArea1.append(gui.getTimeStamp()+" <System>: Connection successful localhost:"+assinged_port+" -> "+rhost+":"+rport+"\n");
         }catch(JSchException e){gui.jTextArea1.append(gui.getTimeStamp()+ " <System>: " + e.toString());}
     }
-    
-    public void mysql_conn() {
+    public void mysql_conn(){
+        
+    }
+    public void mysql_conn(boolean connect) {
         Connection con = null;
         String url = "jdbc:mysql://localhost:" + lport + "/";
         String db = "ilmarian";
-        String dbUser = s.getDbUser();
-        String dbPasswd = s.getDbPassword();
+        //String dbUser = s.getDbUser();
+        //String dbPasswd = s.getDbPassword();
+        String dbUser = "dummy";
+        String dbPasswd = "dummyPSWD";
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url+db, dbUser, dbPasswd);
