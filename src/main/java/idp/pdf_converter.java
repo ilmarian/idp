@@ -22,14 +22,10 @@ public class pdf_converter {
     public static void pdf_converter(File file) throws IOException {
         PDDocument document = PDDocument.load(file);
         PDFRenderer pdfRenderer = new PDFRenderer(document);
-        File hfile = new File("T.txt");
-        String path = hfile.getAbsolutePath();
-        path = path.substring(0, path.length() - 5) + "src\\main\\resources\\images\\";
-        //TODO: lower dpi
-        for (int page = 0; page < document.getNumberOfPages(); ++page) {
-            //Can we here use binary array to openCv?
-            BufferedImage bim = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
-            ImageIOUtil.writeImage(bim, path + file.getName() + "-" + (page + 1) + ".png", 300); 
+        String path = System.getProperty("user.dir")+"\\src\\main\\temp\\images\\";
+        for (int page = 0; page < document.getNumberOfPages(); ++page) { 
+            BufferedImage bim = pdfRenderer.renderImageWithDPI(page, 300, ImageType.GRAY);
+            ImageIOUtil.writeImage(bim, path+file.getName() + "-" + (page+1) + ".png", 300);            
         }
         document.close();
     }

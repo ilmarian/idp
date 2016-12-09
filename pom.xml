@@ -52,5 +52,20 @@
         <artifactId>commons-io</artifactId>
         <version>2.5</version>
     </dependency>
+    <dependency>
+        <groupId>org.bytedeco.javacpp-presets</groupId>
+        <artifactId>tesseract</artifactId>
+        <version>3.04.01-1.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.bytedeco.javacpp-presets</groupId>
+        <artifactId>opencv</artifactId>
+        <version>3.0.0-1.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.opencsv</groupId>
+        <artifactId>opencsv</artifactId>
+        <version>3.8</version>
+    </dependency>
   </dependencies>
 </project>
