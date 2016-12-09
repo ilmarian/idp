@@ -16,6 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
 
 /**
  *
@@ -74,12 +77,12 @@ public class gui extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
         jDialog1.setTitle("SSH connection");
         jDialog1.setAlwaysOnTop(true);
-        jDialog1.setMaximumSize(new java.awt.Dimension(300, 150));
         jDialog1.setMinimumSize(new java.awt.Dimension(300, 150));
         jDialog1.setResizable(false);
 
@@ -187,7 +190,6 @@ public class gui extends javax.swing.JFrame {
         );
 
         jDialog2.setTitle("Form analyzing complete");
-        jDialog2.setPreferredSize(new java.awt.Dimension(721, 400));
         jDialog2.setResizable(false);
 
         jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -336,6 +338,13 @@ public class gui extends javax.swing.JFrame {
             }
         });
 
+        jButton9.setText("Parse text from png");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -343,6 +352,7 @@ public class gui extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -360,6 +370,8 @@ public class gui extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -497,11 +509,11 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        try {
+        /*try {
             connect.ssh_conn(jTextField2.getText(), String.valueOf(jPasswordField1.getPassword()));
         } catch (IOException ex) {
             Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         jDialog1.setVisible(false);
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
@@ -516,6 +528,24 @@ public class gui extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        final JFileChooser fc = new JFileChooser("Import files");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter ("png", "png");
+        fc.setFileFilter(filter);
+        fc.setPreferredSize(new Dimension(600,400));
+        fc.setMultiSelectionEnabled(true);
+        int result = fc.showOpenDialog(jPanel1);
+        if (result == JFileChooser.APPROVE_OPTION){
+            jTextArea1.append(getTimeStamp()+ " <System>: Starting to parse png files\n");
+            ArrayList<File> files = new ArrayList(Arrays.asList(fc.getSelectedFiles()));
+            parser.addAll(files);
+            jTextArea1.append(getTimeStamp()+ " <System>: Parsed with following result:\n"
+                + parser.parse() + "\n"
+                + "<System>: End of result\n"
+            );
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
     
     public static String getTimeStamp(){
         timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
@@ -528,6 +558,7 @@ public class gui extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        System.load("C:\\Users\\jannt\\Desktop\\yliopisto\\idp\\src\\main\\resources\\x64\\opencv_java2413.dll");
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -546,17 +577,21 @@ public class gui extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        //Create and display the form 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new gui().setVisible(true);
             }
         });
+        /*
+        String path = "C:\\Users\\jannt\\Desktop\\yliopisto\\idp\\src\\main\\resources\\Images\\test.png";
+        new ImageParser( new File( path ) ).parse();*/
     }
     
     ArrayList<String> imglist = new ArrayList();
     form_analyzer fa = new form_analyzer();
     mysql_con connect = new mysql_con();
+    ImageParser parser = new ImageParser();
     private static String timeStamp;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -570,6 +605,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JDialog jDialog1;
