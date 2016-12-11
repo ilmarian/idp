@@ -41,7 +41,7 @@ public class mysql_con {
             gui.jTextArea1.append(gui.getTimeStamp()+" <System>: Connection successful localhost:"+assinged_port+" -> "+rhost+":"+rport+"\n");
         }catch(JSchException e){gui.jTextArea1.append(gui.getTimeStamp()+ " <System>: " + e.toString() +"\n");}
     }
-    
+        
     public void mysql_conn() {
         String url = "jdbc:mysql://localhost:" + lport + "/";
         String db = s.getDb();
