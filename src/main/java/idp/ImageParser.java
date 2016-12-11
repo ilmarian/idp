@@ -3,6 +3,7 @@ package idp;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Vector;
 import org.bytedeco.javacpp.*;
 import org.bytedeco.javacpp.BytePointer;
@@ -65,7 +66,11 @@ public class ImageParser {
         String string = "";
         TessBaseAPI api = new TessBaseAPI();
         // Initialize tesseract-ocr with English, without specifying tessdata path
-        if (api.Init(".", "ENG") != 0) {
+        Locale loc = Locale.getDefault();
+        if ( ( loc.getLanguage().equals("fi") ? 
+                api.Init(".", "FIN") : 
+                api.Init(".", "ENG") 
+            ) != 0 ) {
             System.err.println("Could not initialize tesseract.");
             System.exit(1);
         }
@@ -73,13 +78,12 @@ public class ImageParser {
             string = parseFile(file,api);
         }else{
             for( File file : files ){
-                System.out.println("File path: " + file.getPath());
                 string += parseFile(file,api) + "\n";
             }
         }
         // Destroy used object and release memory
         api.End();
-        System.out.println("OCR output:\n" + string);
+        //System.out.println("OCR output:\n" + string);
         return string;
     }
 
