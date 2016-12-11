@@ -7,15 +7,19 @@ package idp;
 
 import java.awt.Dimension;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
@@ -26,7 +30,13 @@ import org.opencv.core.Mat;
  * @author Ilmari
  */
 public class gui extends javax.swing.JFrame {
-
+    
+    static List<JTextArea> jta = new ArrayList<JTextArea>();
+    List<String> imglist = new ArrayList();
+    form_analyzer fa = new form_analyzer();
+    mysql_con connect = new mysql_con();
+    file_operator fo = new file_operator();
+    ImageParser parser = new ImageParser();
     /**
      * Creates new form gui
      */
@@ -548,6 +558,18 @@ public class gui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton9ActionPerformed
     
+    public static void addTab(String name, FileReader reader, String path){
+        jTextArea2 = new JTextArea();
+        jta.add(jTextArea2);
+        jScrollPane2 = new JScrollPane();
+        jScrollPane2.setViewportView(jTextArea2);
+        jTabbedPane1.addTab(name, jScrollPane2);
+        try {
+            jTextArea2.read(reader, path);
+            reader.close();
+        } catch (IOException ex) {}
+    }
+    
     public static String getTimeStamp(){
         timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
         return timeStamp;
@@ -588,11 +610,6 @@ public class gui extends javax.swing.JFrame {
         String path = "C:\\Users\\jannt\\Desktop\\yliopisto\\idp\\src\\main\\resources\\Images\\test.png";
         new ImageParser( new File( path ) ).parse();*/
     }
-    
-    ArrayList<String> imglist = new ArrayList();
-    form_analyzer fa = new form_analyzer();
-    mysql_con connect = new mysql_con();
-    ImageParser parser = new ImageParser();
     private static String timeStamp;
     // Variables declaration - do not modify                     
     private javax.swing.ButtonGroup buttonGroup1;
@@ -623,7 +640,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private static javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     public static javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JTextArea jTextArea1;
