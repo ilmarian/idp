@@ -19,7 +19,7 @@ import org.apache.pdfbox.tools.imageio.ImageIOUtil;
  */
 public class pdf_converter {
 
-    public static void pdf_converter(File file) throws IOException {
+    public static void pdf_converter(File file) throws IOException{
         PDDocument document = PDDocument.load(file);
         PDFRenderer pdfRenderer = new PDFRenderer(document);
         String path = System.getProperty("user.dir")+"\\src\\main\\temp\\images\\";

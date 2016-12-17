@@ -4,7 +4,12 @@ import java.util.List;
 import org.bytedeco.javacpp.*;
 import static org.bytedeco.javacpp.lept.*;
 import static org.bytedeco.javacpp.tesseract.*;
-        
+      
+/**
+ *
+ * @author Ilmari
+ */
+
 public class form_analyzer {
     static String output = "";
     file_operator fo = new file_operator();
@@ -15,6 +20,7 @@ public class form_analyzer {
             PIX image = pixRead(img);
             do_stuff(image);
         }
+        gui.jTextArea1.append(gui.getTimeStamp() + " <System>: Data extraction complete.\n");
     }
     private void do_stuff(PIX image){
         BytePointer outText;

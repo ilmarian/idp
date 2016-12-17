@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 public class file_operator {
     static String path = System.getProperty("user.dir")+"\\src\\main\\temp\\csv\\";
@@ -42,8 +43,9 @@ public class file_operator {
         try {     
             for (int i = 0; i<files.size(); i++){
                 filename = files.get(i).getAbsolutePath().replace(path, "");
-                FileReader reader = new FileReader(files.get(i).getAbsolutePath());  
-                gui.addTab(filename, reader, path+filename);
+                FileReader reader = new FileReader(files.get(i).getAbsolutePath());
+                if(FilenameUtils.getExtension(files.get(i).getAbsolutePath()).equals("csv"))
+                    gui.addTab(filename, reader, path+filename);
             } 
         } catch (IOException ex) {}
     }
