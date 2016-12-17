@@ -42,9 +42,9 @@ public class mysql_con {
         
     public void mysql_conn() {
         String url = "jdbc:mysql://localhost:" + lport + "/";
-        String db = s.getDb();
-        String dbUser = s.getDbUser();
-        String dbPasswd = s.getDbPassword();
+        String db = gui.jTextField5.getText();
+        String dbUser = gui.jTextField6.getText();
+        String dbPasswd =  String.valueOf(gui.jPasswordField2.getPassword());
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url+db, dbUser, dbPasswd);
