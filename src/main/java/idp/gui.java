@@ -41,6 +41,7 @@ public class gui extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         jTextArea1.append(getTimeStamp()+" <System>: "+ "Session started.\n");
+        fo.delete_files();
     }
 
     /**
