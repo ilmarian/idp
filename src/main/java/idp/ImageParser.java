@@ -1,5 +1,6 @@
 package idp;
 
+import static idp.form_analyzer.output;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

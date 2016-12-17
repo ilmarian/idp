@@ -24,9 +24,7 @@ public class mysql_con {
     Connection con = null;
     secrets s = new secrets();
 
-    public void ssh_conn(String user, String pw) throws IOException{        
-        String host = "cs.uef.fi";
-        int port=22;
+    public void ssh_conn(String user, String pw, String host, int port) throws IOException{
         try{
             JSch jsch = new JSch();
             Session session = jsch.getSession(user, host, port);
@@ -63,7 +61,7 @@ public class mysql_con {
             String sql = gui.jTextField1.getText();
             Statement st = con.createStatement();
 
-            if (sql.toLowerCase().startsWith("select")){
+            if (sql.toLowerCase().startsWith("select")||sql.toLowerCase().startsWith("describe")||sql.toLowerCase().startsWith("show tables")){
                 ResultSet rs = st.executeQuery(sql);
                 int col = rs.getMetaData().getColumnCount();
                 StringBuilder sb = new StringBuilder();                    
@@ -112,9 +110,9 @@ public class mysql_con {
                 System.out.println(sql);
                 Statement st = con.createStatement();
                 st.execute(sql);
-
+                gui.jTextArea1.append(gui.getTimeStamp()+" <System>: Files exported successfully\n");
             }catch (SQLException e){
-                e.printStackTrace();
+                gui.jTextArea1.append(gui.getTimeStamp()+" <System>: File export failed\n");
             }
         }
     }
